@@ -5,6 +5,7 @@
 int menuPrincipal() {
     int opcion;
     do {
+        printf("************\nKAHALA HOTEL\n************\n");
         printf("1. Acceder como cliente\n");
         printf("2. Acceder como administrador\n");
         printf("3. Salir del programa\n");
@@ -34,7 +35,7 @@ int menuPrincipal() {
 int menuCliente() {
     int opcion;
     do {
-        printf("Menu de acceso como cliente\n");
+        printf("***************************\nMenu de acceso como cliente\n***************************\n");
         printf("1. Registrarse\n");
         printf("2. Iniciar sesion\n");
         printf("3. Volver al menu principal\n");
@@ -64,7 +65,7 @@ int menuCliente() {
 int menuAdministrador(){
 int opcion;
     do {
-        printf("Menu de acceso como administrador\n");
+        printf("*********************************\nMenu de acceso como administrador\n*********************************\n");
         printf("1. Iniciar sesion\n");
         printf("2. Volver al menu principal\n");
         printf("Ingrese una opcion: ");
