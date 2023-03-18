@@ -5,7 +5,6 @@
 int menuPrincipal() {
     int opcion;
     do {
-        printf("Bienvenido al programa\n");
         printf("1. Acceder como cliente\n");
         printf("2. Acceder como administrador\n");
         printf("3. Salir del programa\n");
