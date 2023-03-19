@@ -1,5 +1,6 @@
 #include "utilities.h"
 #include "cliente.c"
+#include "administrador.c"
 #include <stdio.h>
 #include<stdlib.h>
 #include <string.h>
@@ -23,7 +24,7 @@ int menuPrincipal() {
                 break;
             case 2:
                 printf("Accediendo como administrador...\n");
-                menuAdministrador();
+                menuAdministradorLogin();
                 break;
             case 3:
                 numClientes = 0;
@@ -83,7 +84,7 @@ int menuCliente() {
 }
 
 
-int menuAdministrador(){
+int menuAdministradorLogin(){
 int opcion;
     do {
         printf("*********************************\nMenu de acceso como administrador\n*********************************\n");
@@ -93,8 +94,10 @@ int opcion;
         scanf("%d", &opcion);
 
         switch (opcion) {
+            char usuario[50];
+            char contrasena[50];
             case 1:
-                printf("Iniciando sesion...\n");
+                loginAdministrador(usuario, contrasena);
                 break;
             case 2:
                 printf("Volviendo al menu principal...\n");
@@ -114,6 +117,7 @@ int opcion;
         printf("*******\nReserva\n*******\n");
         printf("1. Hacer reserva\n");
         printf("2. Ver mis reservas\n");
+        printf("Ingrese una opcion: ");
         scanf("%d", &opcion);
 
         switch (opcion) {
@@ -122,6 +126,31 @@ int opcion;
                 break;
             case 2:
                 printf("Accediendo a mis reservas...\n");
+                break;
+            default:
+                printf("Opcion invalida, intentelo de nuevo\n");
+                break;
+        }
+    } while (opcion != 2);
+    return opcion;
+}
+
+int menuAdministrador(){
+int opcion;
+    do {
+        printf("*************\nAdministrador\n*************\n");
+        printf("1. Ver lista de clientes\n");
+        printf("2. Volver al menu principal\n");
+        printf("Ingrese una opcion: ");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1:
+                printf("Accediendo a la lista de clientes...\n");
+                break;
+            case 2:
+                printf("Volviendo al menu principal...\n");
+                menuPrincipal();
                 break;
             default:
                 printf("Opcion invalida, intentelo de nuevo\n");

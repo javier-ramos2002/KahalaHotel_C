@@ -3,7 +3,8 @@
 
 int menuPrincipal();
 int menuCliente();
-int menuAdministrador();
+int menuAdministradorLogin();
 int menuReserva();
+int menuAdministrador();
 
 #endif
