@@ -1,6 +1,8 @@
 #include "utilities.h"
+#include "cliente.c"
 #include <stdio.h>
 #include<stdlib.h>
+#include <string.h>
 
 int menuPrincipal() {
     int opcion;
@@ -13,6 +15,8 @@ int menuPrincipal() {
         scanf("%d", &opcion);
 
         switch (opcion) {
+            int numClientes;
+            Cliente *clientes;
             case 1:
                 printf("Accediendo como cliente...\n");
                 menuCliente();
@@ -22,7 +26,16 @@ int menuPrincipal() {
                 menuAdministrador();
                 break;
             case 3:
+                numClientes = 0;
+                clientes = NULL;
                 printf("Saliendo...\n");
+                 for (int i = 0; i < numClientes; i++) {
+                    free(clientes[i].dni);
+                    free(clientes[i].nombre);
+                    free(clientes[i].apellido);
+                    free(clientes[i].contrasena);
+                }
+                free(clientes);
                 exit(0);
             default:
                 printf("Opcion invalida, intentelo de nuevo\n");
@@ -38,18 +51,26 @@ int menuCliente() {
         printf("***************************\nMenu de acceso como cliente\n***************************\n");
         printf("1. Registrarse\n");
         printf("2. Iniciar sesion\n");
-        printf("3. Volver al menu principal\n");
+        printf("3. Configurar mi perfil\n");
+        printf("4. Volver al menu principal\n");
         printf("Ingrese una opcion: ");
         scanf("%d", &opcion);
 
         switch (opcion) {
+            int numClientes;
+            Cliente *clientes;
             case 1:
-                printf("Registrando nueva cuenta...\n");
+                numClientes = 0;
+                clientes = NULL;
+                registrarCliente(&clientes, &numClientes);
                 break;
             case 2:
                 printf("Iniciando sesion...\n");
                 break;
             case 3:
+                printf("Configurando mi perfil...\n");
+                break;
+            case 4:
                 printf("Volviendo al menu principal...\n");
                 menuPrincipal();
                 break;
@@ -57,7 +78,7 @@ int menuCliente() {
                 printf("Opcion invalida, intentelo de nuevo\n");
                 break;
         }
-    } while (opcion != 3);
+    } while (opcion != 4);
     return opcion;
 }
 
@@ -78,6 +99,29 @@ int opcion;
             case 2:
                 printf("Volviendo al menu principal...\n");
                 menuPrincipal();
+                break;
+            default:
+                printf("Opcion invalida, intentelo de nuevo\n");
+                break;
+        }
+    } while (opcion != 2);
+    return opcion;
+}
+
+int menuReserva(){
+int opcion;
+    do {
+        printf("*******\nReserva\n*******\n");
+        printf("1. Hacer reserva\n");
+        printf("2. Ver mis reservas\n");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1:
+                printf("Haciendo reserva...\n");
+                break;
+            case 2:
+                printf("Accediendo a mis reservas...\n");
                 break;
             default:
                 printf("Opcion invalida, intentelo de nuevo\n");

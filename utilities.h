@@ -4,5 +4,6 @@
 int menuPrincipal();
 int menuCliente();
 int menuAdministrador();
+int menuReserva();
 
 #endif
