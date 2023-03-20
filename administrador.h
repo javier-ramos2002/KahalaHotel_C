@@ -7,5 +7,5 @@ typedef struct{
 }Administrador;
 
 void loginAdministrador(char *usuario, char *contrasena);
-
+void mostrarCliente();
 #endif

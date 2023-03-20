@@ -145,8 +145,9 @@ int opcion;
         scanf("%d", &opcion);
 
         switch (opcion) {
+            Cliente cliente;
             case 1:
-                printf("Accediendo a la lista de clientes...\n");
+                mostrarCliente(&cliente);
                 break;
             case 2:
                 printf("Volviendo al menu principal...\n");
