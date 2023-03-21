@@ -23,14 +23,20 @@ void loginAdministrador(char* usuario, char* contrasena) {
     }
 }
 
-void mostrarCliente() {
-    Cliente cliente;
-    FILE *f = fopen("clientes.txt", "r");
-    if (f != NULL) {
-        while (fscanf(f, "%s %s %s %d %d %d %s", cliente.dni, cliente.nombre, cliente.apellido, cliente.edad, cliente.telefono, cliente.numeroTarjeta, cliente.contrasena) != EOF) {
-            printf("%s;%s;%s;%d;%d;%d;%s\n", cliente.dni, cliente.nombre, cliente.apellido, cliente.edad, cliente.telefono, cliente.numeroTarjeta, cliente.contrasena);
-        }
-    fclose(f);
+void mostrarClientes() {
+    FILE *file;
+    char cliente[100];
+
+    file = fopen("clientes.txt", "r");
+    if (file == NULL) {
+        printf("Error al abrir el archivo.\n");
+        return;
     }
-    
+
+    printf("*****************\nLista de clientes\n*****************\n");
+    while (fgets(cliente, sizeof(cliente), file) != NULL) {
+        printf("%s", cliente);
+    }
+
+    fclose(file);
 }

@@ -19,7 +19,7 @@ void registrarCliente(Cliente **clientes, int *numClientes) {
 
     char line[256];
     while (fgets(line, sizeof(line), f)) {
-        char *tok = strtok(line, " ");
+        char *tok = strtok(line, ",");
         if (strcmp(tok, cliente.dni) == 0) {
             printf("Ya existe un cliente registrado con ese DNI.\n");
             fclose(f);
@@ -53,6 +53,6 @@ void registrarCliente(Cliente **clientes, int *numClientes) {
         printf("Error al abrir el archivo.\n");
         exit(1);
     }
-    fprintf(f, "%s %s %s %d %d %d %s\n", cliente.dni, cliente.nombre, cliente.apellido, cliente.edad, cliente.telefono, cliente.numeroTarjeta, cliente.contrasena);
+    fprintf(f, "DNI: %s, Nombre: %s, Apellido: %s, Edad: %d, Telefono: %d, Numero de tarjeta: %d, Contrasena: %s\n", cliente.dni, cliente.nombre, cliente.apellido, cliente.edad, cliente.telefono, cliente.numeroTarjeta, cliente.contrasena);
     fclose(f);
 }
