@@ -3,8 +3,6 @@
 #include <string.h>
 
 void registrarCliente(Cliente **clientes, int *numClientes) {
-    *clientes = (Cliente *) realloc(*clientes, (*numClientes + 1) * sizeof(Cliente));
-    
     printf("Ingrese los datos del cliente:\n");
     Cliente cliente;
     cliente.dni = (char *) malloc(50 * sizeof(char));
@@ -17,17 +15,24 @@ void registrarCliente(Cliente **clientes, int *numClientes) {
         exit(1);
     }
 
-    char line[256];
+   char line[256];
     while (fgets(line, sizeof(line), f)) {
-        char *tok = strtok(line, ",");
-        if (strcmp(tok, cliente.dni) == 0) {
-            printf("Ya existe un cliente registrado con ese DNI.\n");
-            fclose(f);
-            return;
+        char *posicionComa = strchr(line, ',');
+        if (posicionComa != NULL) {
+            *posicionComa = '\0';
+            if (strcmp(line + 5, cliente.dni) == 0) {
+                printf("Ya existe un cliente registrado con ese DNI.\n");
+                fclose(f);
+                return;
+            }
         }
     }
+
+
     fclose(f);
 
+    *clientes = (Cliente *) realloc(*clientes, (*numClientes + 1) * sizeof(Cliente));
+    
     cliente.nombre = (char *) malloc(50 * sizeof(char));
     printf("Nombre: ");
     scanf("%s", cliente.nombre);

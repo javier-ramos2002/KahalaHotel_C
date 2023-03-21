@@ -25,7 +25,7 @@ void loginAdministrador(char* usuario, char* contrasena) {
 
 void mostrarClientes() {
     FILE *file;
-    char cliente[100];
+    char line[256];
 
     file = fopen("clientes.txt", "r");
     if (file == NULL) {
@@ -34,8 +34,8 @@ void mostrarClientes() {
     }
 
     printf("*****************\nLista de clientes\n*****************\n");
-    while (fgets(cliente, sizeof(cliente), file) != NULL) {
-        printf("%s", cliente);
+    while (fgets(line, sizeof(line), file) != NULL) {
+        printf("%s", line);
     }
 
     fclose(file);
