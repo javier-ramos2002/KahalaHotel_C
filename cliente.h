@@ -13,5 +13,5 @@ typedef struct{
 }Cliente;
 
 void registrarCliente(Cliente **clientes, int *numClientes);
-
+int iniciarSesion(const char *filename);
 #endif

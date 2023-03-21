@@ -61,3 +61,35 @@ void registrarCliente(Cliente **clientes, int *numClientes) {
     fprintf(f, "DNI: %s, Nombre: %s, Apellido: %s, Edad: %d, Telefono: %d, Numero de tarjeta: %d, Contrasena: %s\n", cliente.dni, cliente.nombre, cliente.apellido, cliente.edad, cliente.telefono, cliente.numeroTarjeta, cliente.contrasena);
     fclose(f);
 }
+
+int iniciarSesion(const char *filename) {
+    char dni[10], contrasena[50];
+    FILE *file;
+
+    printf("Introduzca su DNI: ");
+    scanf("%9s", dni);
+    printf("Introduzca su contrasena: ");
+    scanf("%49s", contrasena);
+
+    file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("Error al abrir el archivo.\n");
+        return 1;
+    }
+
+    char line[256];
+    while (fgets(line, sizeof(line), file)) {
+        char dni_file[10], contrasena_file[50];
+        sscanf(line, "DNI: %9[^,], Nombre: %*[^,], Apellido: %*[^,], Edad: %*d, Telefono: %*d, Numero de tarjeta: %*d, Contrasena: %49[^,\n]", dni_file, contrasena_file);
+
+        if (strcmp(dni, dni_file) == 0 && strcmp(contrasena, contrasena_file) == 0) {
+            fclose(file);
+            printf("Bienvenido %s.\n", dni);
+            menuReserva();
+        }
+    }
+
+    fclose(file);
+    printf("Credenciales invalidas, intentelo de nuevo.\n");
+    return 1;
+}

@@ -18,7 +18,7 @@ void loginAdministrador(char* usuario, char* contrasena) {
         printf("Inicio de sesion completado\n");
         menuAdministrador();
     } else {
-        printf("Credenciales invalidas, intentalo de nuevo\n");
+        printf("Credenciales invalidas, intentelo de nuevo\n");
         return;
     }
 }

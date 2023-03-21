@@ -66,7 +66,7 @@ int menuCliente() {
                 registrarCliente(&clientes, &numClientes);
                 break;
             case 2:
-                printf("Iniciando sesion...\n");
+                iniciarSesion("clientes.txt");
                 break;
             case 3:
                 printf("Configurando mi perfil...\n");
@@ -117,6 +117,7 @@ int opcion;
         printf("*******\nReserva\n*******\n");
         printf("1. Hacer reserva\n");
         printf("2. Ver mis reservas\n");
+        printf("3. Volver al menu principal\n");
         printf("Ingrese una opcion: ");
         scanf("%d", &opcion);
 
@@ -127,11 +128,15 @@ int opcion;
             case 2:
                 printf("Accediendo a mis reservas...\n");
                 break;
+            case 3:
+                printf("Volviendo al menu principal...\n");
+                menuPrincipal();
+                break;
             default:
                 printf("Opcion invalida, intentelo de nuevo\n");
                 break;
         }
-    } while (opcion != 2);
+    } while (opcion != 3);
     return opcion;
 }
 
