@@ -143,7 +143,7 @@ int opcion;
 int menuAdministrador(){
 int opcion;
     do {
-        printf("*************\nAdministrador\n*************\n");
+        printf("\n*************\nAdministrador\n*************\n");
         printf("1. Ver lista de clientes\n");
         printf("2. Volver al menu principal\n");
         printf("Ingrese una opcion: ");
