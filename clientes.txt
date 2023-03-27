@@ -1,1 +1,2 @@
 DNI: 72852602X, Nombre: Javier, Apellido: Ramos, Edad: 21, Telefono: 666666666, Numero de tarjeta: 987654321, Contrasena: 12345
+DNI: 75452218G, Nombre: Alejandro, Apellido: Pelegrin, Edad: 20, Telefono: 777777777, Numero de tarjeta: 123456789, Contrasena: 44444
