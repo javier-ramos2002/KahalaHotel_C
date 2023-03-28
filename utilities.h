@@ -1,10 +1,10 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-int menuPrincipal();
-int menuCliente();
+void menuPrincipal();
+void menuCliente();
 int menuAdministradorLogin();
-int menuReserva();
-int menuAdministrador();
+void menuReserva();
+void menuAdministrador();
 
 #endif

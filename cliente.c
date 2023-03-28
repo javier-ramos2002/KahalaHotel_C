@@ -58,7 +58,7 @@ void registrarCliente(Cliente **clientes, int *numClientes) {
         printf("Error al abrir el archivo.\n");
         exit(1);
     }
-    fprintf(f, "DNI: %s, Nombre: %s, Apellido: %s, Edad: %d, Telefono: %d, Numero de tarjeta: %d, Contrasena: %s\n", cliente.dni, cliente.nombre, cliente.apellido, cliente.edad, cliente.telefono, cliente.numeroTarjeta, cliente.contrasena);
+    fprintf(f, "DNI: %s, Nombre: %s, Apellido: %s, Edad: %d, Telefono: %d, Numero de tarjeta: %d, Contrasena: %s\r\n", cliente.dni, cliente.nombre, cliente.apellido, cliente.edad, cliente.telefono, cliente.numeroTarjeta, cliente.contrasena);
     fclose(f);
 }
 
@@ -85,7 +85,7 @@ int iniciarSesion(const char *filename) {
         if (strcmp(dni, dni_file) == 0 && strcmp(contrasena, contrasena_file) == 0) {
             fclose(file);
             printf("Bienvenido %s.\n", dni);
-            menuReserva();
+            return 2;
         }
     }
 

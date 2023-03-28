@@ -6,6 +6,6 @@ typedef struct{
     char *contrasena;
 }Administrador;
 
-void loginAdministrador(char *usuario, char *contrasena);
+int loginAdministrador(char *usuario, char *contrasena);
 void mostrarClientes();
 #endif

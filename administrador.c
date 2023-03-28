@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void loginAdministrador(char* usuario, char* contrasena) {
+int loginAdministrador(char* usuario, char* contrasena) {
     char* admin_username = "admin";
     char* admin_password = "admin";
     
@@ -16,10 +16,10 @@ void loginAdministrador(char* usuario, char* contrasena) {
     if (strcmp(usuario, admin_username) == 0
         && strcmp(contrasena, admin_password) == 0) {
         printf("Inicio de sesion completado\n");
-        menuAdministrador();
+        return 1;
     } else {
         printf("Credenciales invalidas, intentelo de nuevo\n");
-        return;
+        return 0;
     }
 }
 

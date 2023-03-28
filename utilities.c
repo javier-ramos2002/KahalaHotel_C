@@ -1,11 +1,12 @@
 #include "utilities.h"
-#include "cliente.c"
-#include "administrador.c"
+#include "cliente.h"
+#include "administrador.h"
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 #include <string.h>
-
-int menuPrincipal() {
+#include "bd.h"
+void menuPrincipal() {
+    init_database();
     int opcion;
     do {
         printf("************\nKAHALA HOTEL\n************\n");
@@ -24,7 +25,9 @@ int menuPrincipal() {
                 break;
             case 2:
                 printf("Accediendo como administrador...\n");
-                menuAdministradorLogin();
+                if(menuAdministradorLogin()){
+                    menuAdministrador();
+                }
                 break;
             case 3:
                 numClientes = 0;
@@ -43,10 +46,10 @@ int menuPrincipal() {
                 break;
         }
     } while (opcion != 3);
-    return opcion;
+    close_database();
 }
 
-int menuCliente() {
+void menuCliente() {
     int opcion;
     do {
         printf("***************************\nMenu de acceso como cliente\n***************************\n");
@@ -66,26 +69,28 @@ int menuCliente() {
                 registrarCliente(&clientes, &numClientes);
                 break;
             case 2:
-                iniciarSesion("clientes.txt");
+                if(iniciarSesion("clientes.txt")==2)
+                    menuReserva();
                 break;
             case 3:
                 printf("Configurando mi perfil...\n");
                 break;
             case 4:
                 printf("Volviendo al menu principal...\n");
-                menuPrincipal();
                 break;
             default:
                 printf("Opcion invalida, intentelo de nuevo\n");
                 break;
         }
     } while (opcion != 4);
-    return opcion;
 }
 
 
 int menuAdministradorLogin(){
-int opcion;
+    int opcion,a;
+    char usuario[50];
+    char contrasena[50];
+    
     do {
         printf("*********************************\nMenu de acceso como administrador\n*********************************\n");
         printf("1. Iniciar sesion\n");
@@ -94,25 +99,22 @@ int opcion;
         scanf("%d", &opcion);
 
         switch (opcion) {
-            char usuario[50];
-            char contrasena[50];
             case 1:
-                loginAdministrador(usuario, contrasena);
+                a=loginAdministrador(usuario, contrasena);
                 break;
             case 2:
                 printf("Volviendo al menu principal...\n");
-                menuPrincipal();
                 break;
             default:
                 printf("Opcion invalida, intentelo de nuevo\n");
                 break;
         }
     } while (opcion != 2);
-    return opcion;
+    return a;
 }
 
-int menuReserva(){
-int opcion;
+void menuReserva(){
+    int opcion;
     do {
         printf("*******\nReserva\n*******\n");
         printf("1. Hacer reserva\n");
@@ -130,18 +132,16 @@ int opcion;
                 break;
             case 3:
                 printf("Volviendo al menu principal...\n");
-                menuPrincipal();
                 break;
             default:
                 printf("Opcion invalida, intentelo de nuevo\n");
                 break;
         }
     } while (opcion != 3);
-    return opcion;
 }
 
-int menuAdministrador(){
-int opcion;
+void menuAdministrador(){
+    int opcion;
     do {
         printf("\n*************\nAdministrador\n*************\n");
         printf("1. Ver lista de clientes\n");
@@ -155,12 +155,10 @@ int opcion;
                 break;
             case 2:
                 printf("Volviendo al menu principal...\n");
-                menuPrincipal();
                 break;
             default:
                 printf("Opcion invalida, intentelo de nuevo\n");
                 break;
         }
     } while (opcion != 2);
-    return opcion;
 }

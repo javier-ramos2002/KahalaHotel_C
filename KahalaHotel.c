@@ -1,6 +1,4 @@
-#include"utilities.c"
-#include <stdio.h>
-
+#include"utilities.h"
 int main() {
    menuPrincipal();
    return 0;
