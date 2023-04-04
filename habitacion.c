@@ -56,3 +56,40 @@ void anyadirHabitacion(Habitacion habitacion) {
     sqlite3_close(db);
     printf("Habitacion añadida exitosamente\n");
 }
+
+// Actualiza/modifica la información de una habitación en la tabla
+void modificarHabitacion(int id, Habitacion *habitacion) {
+    sqlite3 *db;
+    int rc = sqlite3_open("bd.db", &db);
+    if (rc != SQLITE_OK) {
+        fprintf(stderr, "Error al abrir la base de datos %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return;
+    }
+
+    char *sql = "UPDATE habitaciones SET nombre=?, precio=?, tipo=? WHERE id=?;";
+    sqlite3_stmt *stmt;
+    rc = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+    if (rc != SQLITE_OK) {
+        fprintf(stderr, "Error %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return;
+    }
+
+    // Vincular los parámetros de la sentencia SQL
+    sqlite3_bind_text(stmt, 1, habitacion->nombre, -1, SQLITE_STATIC);
+    sqlite3_bind_double(stmt, 2, habitacion->precio);
+    sqlite3_bind_text(stmt, 3, habitacion->tipo, -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 4, id);
+
+    rc = sqlite3_step(stmt);
+    if (rc != SQLITE_DONE) {
+        fprintf(stderr, "Error de ejecucion %s\n", sqlite3_errmsg(db));
+        sqlite3_finalize(stmt);
+        sqlite3_close(db);
+        return;
+    }
+
+    sqlite3_finalize(stmt);
+    sqlite3_close(db);
+}
