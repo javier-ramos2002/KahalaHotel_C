@@ -93,3 +93,7 @@ void modificarHabitacion(int id, Habitacion *habitacion) {
     sqlite3_finalize(stmt);
     sqlite3_close(db);
 }
+//Optiene el Id de un a Habitacion (para realizar consultas en la BD)
+int obtenerID(Habitacion* habitacion){
+    return habitacion->id;
+}

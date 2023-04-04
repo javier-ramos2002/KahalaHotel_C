@@ -53,3 +53,39 @@ void anyadirProducto(Producto producto) {
     sqlite3_free(sql);
     sqlite3_close(db);
 }
+
+//Modifica/actualiza un producto en la base de datos
+int modificarProducto(int id, Producto producto) {
+    sqlite3 *db;
+    char *error_msg = 0;
+    int rc;
+    char sql[100];
+
+    rc = sqlite3_open("bd.db", &db);
+
+    if (rc != SQLITE_OK) {
+        fprintf(stderr, "Error al abrir la base de datos: %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return -1;
+    }
+
+    sprintf(sql, "UPDATE productos SET nombre='%s', precio=%f WHERE id=%d", producto.nombre, producto.precio, id);
+
+    rc = sqlite3_exec(db, sql, 0, 0, &error_msg);
+
+    if (rc != SQLITE_OK) {
+        fprintf(stderr, "Error al actualizar el producto: %s\n", error_msg);
+        sqlite3_free(error_msg);
+        sqlite3_close(db);
+        return -1;
+    }
+
+    printf("Producto modificado correctamente\n");
+    sqlite3_close(db);
+
+    return 0;
+}
+//Optiene el Id de un producto (para hacer las consultas en la BD)
+int obtenerID(Producto* producto){
+    return producto->id;
+}

@@ -14,5 +14,6 @@ Producto* crearProducto(int id, char* nombre, float precio);
 void liberarProducto(Producto* producto);
 void imprimirProducto(Producto* producto);
 void anyadirProducto(Producto producto);
+int obtenerID(Producto* producto);
 
 #endif // PRODUCTO_H

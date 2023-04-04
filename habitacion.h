@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 typedef struct{
-	char id;
+	int id;
     char nombre[50];
     float precio;
     char tipo[20];
@@ -14,6 +14,6 @@ void liberarHabitacion(Habitacion* habitacion);
 void imprimirHabitacion(Habitacion* habitacion);
 void anyadirHabitacion(Habitacion habitacion);
 void modificarHabitacion(int id, Habitacion *habitacion);
-
+int obtenerID( Habitacion* habitacion);
 
 #endif
