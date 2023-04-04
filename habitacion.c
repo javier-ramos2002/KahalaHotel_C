@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "habitacion.h"
+#include "sqlite3.h"
 
 // Crea una nueva habitación
-Habitacion* crear_habitacion(char nombre[], int precio, int id, char tipo[]) {
+Habitacion* crearHabitacion(char nombre[], int precio, int id, char tipo[]) {
     Habitacion* habitacion = (Habitacion*) malloc(sizeof(Habitacion));
     if (habitacion == NULL) {
         printf("Error: no se pudo crear la habitacion\n");
@@ -20,13 +21,38 @@ Habitacion* crear_habitacion(char nombre[], int precio, int id, char tipo[]) {
 }
 
 //Libera la memoria asignada a una habitación
-void liberar_habitacion(Habitacion* habitacion) {
+void liberarHabitacion(Habitacion* habitacion) {
     free(habitacion);
 }
 
 //Imprime la información de una habitación
-void imprimir_habitacion(Habitacion* habitacion) {
+void imprimirHabitacion(Habitacion* habitacion) {
     printf("Habitación %d - %s\n", habitacion->id, habitacion->nombre);
     printf("Tipo: %s\n", habitacion->tipo);
     printf("Precio: %d\n", habitacion->precio);
+}
+
+//Añade una habitacion en la base de datos
+void anyadirHabitacion(Habitacion habitacion) {
+    sqlite3 *db;
+    char *error_message = 0;
+    int result;
+    char sql_query[200];
+    sprintf(sql_query, "INSERT INTO habitaciones (nombre, precio, id, tipo) VALUES ('%s', %f, %d, '%s')",
+            habitacion.nombre, habitacion.precio, habitacion.id, habitacion.tipo);
+    result = sqlite3_open("bd.db", &db); 
+    if (result != SQLITE_OK) {
+        printf("Error al abrir la base de datos: %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return;
+    }
+    result = sqlite3_exec(db, sql_query, 0, 0, &error_message);
+    if (result != SQLITE_OK) {
+        printf("Error al insertar una nueva Habitacion: %s\n", error_message);
+        sqlite3_free(error_message);
+        sqlite3_close(db);
+        return;
+    }
+    sqlite3_close(db);
+    printf("Habitacion añadida exitosamente\n");
 }
