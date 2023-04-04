@@ -76,7 +76,7 @@ void modificarHabitacion(int id, Habitacion *habitacion) {
         return;
     }
 
-    // Vincular los parámetros de la sentencia SQL
+    
     sqlite3_bind_text(stmt, 1, habitacion->nombre, -1, SQLITE_STATIC);
     sqlite3_bind_double(stmt, 2, habitacion->precio);
     sqlite3_bind_text(stmt, 3, habitacion->tipo, -1, SQLITE_STATIC);
