@@ -4,9 +4,9 @@
 
 typedef struct{
 	char id;
-    char nombre;
+    char nombre[50];
     float precio;
-    char tipo;
+    char tipo[20];
 }Habitacion;
 
 #endif
