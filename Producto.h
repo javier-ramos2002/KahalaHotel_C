@@ -3,6 +3,7 @@
 
 
 
+
 typedef struct {
     int id;
     char nombre[50];
@@ -11,5 +12,7 @@ typedef struct {
 
 Producto* crearProducto(int id, char* nombre, float precio);
 void liberarProducto(Producto* producto);
+void imprimirProducto(Producto* producto);
+void anyadirProducto(Producto producto);
 
 #endif // PRODUCTO_H
