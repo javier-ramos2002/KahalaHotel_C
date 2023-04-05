@@ -7,7 +7,9 @@ void registrarCliente(Cliente **clientes, int *numClientes) {
     Cliente cliente;
     cliente.dni = (char *) malloc(50 * sizeof(char));
     printf("DNI: ");
-    scanf("%s", cliente.dni);
+    char input[256];
+    fgets(input, sizeof(input), stdin);
+    sscanf(input, "%s", cliente.dni);
 
     FILE *f = fopen("clientes.txt", "r");
     if (f == NULL) {
@@ -35,19 +37,30 @@ void registrarCliente(Cliente **clientes, int *numClientes) {
     
     cliente.nombre = (char *) malloc(50 * sizeof(char));
     printf("Nombre: ");
-    scanf("%s", cliente.nombre);
+    fgets(input, sizeof(input), stdin);
+    sscanf(input, "%s", cliente.nombre);
+
     cliente.apellido = (char *) malloc(50 * sizeof(char));
     printf("Apellido: ");
-    scanf("%s", cliente.apellido);
+    fgets(input, sizeof(input), stdin);
+    sscanf(input, "%s", cliente.apellido);
+
     printf("Edad: ");
-    scanf("%d", &cliente.edad);
+    fgets(input, sizeof(input), stdin);
+    sscanf(input, "%d", &cliente.edad);
+
     printf("Telefono: ");
-    scanf("%d", &cliente.telefono);
+    fgets(input, sizeof(input), stdin);
+    sscanf(input, "%d", &cliente.telefono);
+
     printf("Numero de tarjeta: ");
-    scanf("%d", &cliente.numeroTarjeta);
+    fgets(input, sizeof(input), stdin);
+    sscanf(input, "%d", &cliente.numeroTarjeta);
+
     cliente.contrasena = (char *) malloc(50 * sizeof(char));
     printf("Contrasena: ");
-    scanf("%s", cliente.contrasena);
+    fgets(input, sizeof(input), stdin);
+    sscanf(input, "%s", cliente.contrasena);
 
     (*clientes)[*numClientes] = cliente;
     (*numClientes)++;
@@ -67,9 +80,12 @@ int iniciarSesion(const char *filename) {
     FILE *file;
 
     printf("Introduzca su DNI: ");
-    scanf("%9s", dni);
+    fgets(dni, sizeof(dni), stdin);
+    sscanf(dni, "%9s", dni);
+
     printf("Introduzca su contrasena: ");
-    scanf("%49s", contrasena);
+    fgets(contrasena, sizeof(contrasena), stdin);
+    sscanf(contrasena, "%49s", contrasena);
 
     file = fopen(filename, "r");
     if (file == NULL) {
