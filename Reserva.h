@@ -16,5 +16,7 @@ typedef struct {
 
 void inicializarReserva(Reserva* reserva, int id, char* fechaEntrada, char* fechaSalida, Cliente* cliente, Habitacion* habitacion, Minibar* minibar);
 void liberarReserva(Reserva* reserva);
+float calcularPrecioReserva(Reserva* reserva);
+void imprimirReserva(Reserva* reserva);
 
 #endif
