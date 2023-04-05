@@ -31,7 +31,6 @@ void anyadirProducto(Producto producto) {
     sqlite3 *db;
     char *err_msg = NULL;
     char *sql = NULL;
-
     int rc = sqlite3_open("bd.db", &db);
     if (rc != SQLITE_OK) {
         fprintf(stderr, "Error al abrir la base de datos: %s\n", sqlite3_errmsg(db));
@@ -41,7 +40,6 @@ void anyadirProducto(Producto producto) {
     asprintf(&sql, "INSERT INTO productos (id, nombre, precio) VALUES (%d, '%s', %f);",
              producto.id, producto.nombre, producto.precio);
 
-
     rc = sqlite3_exec(db, sql, NULL, 0, &err_msg);
     if (rc != SQLITE_OK) {
         fprintf(stderr, "Error al insertar el producto: %s\n", err_msg);
@@ -49,7 +47,6 @@ void anyadirProducto(Producto producto) {
         sqlite3_close(db);
         exit(1);
     }
-
     sqlite3_free(sql);
     sqlite3_close(db);
 }
@@ -62,24 +59,19 @@ int modificarProducto(int id, Producto producto) {
     char sql[100];
 
     rc = sqlite3_open("bd.db", &db);
-
     if (rc != SQLITE_OK) {
         fprintf(stderr, "Error al abrir la base de datos: %s\n", sqlite3_errmsg(db));
         sqlite3_close(db);
         return -1;
     }
-
     sprintf(sql, "UPDATE productos SET nombre='%s', precio=%f WHERE id=%d", producto.nombre, producto.precio, id);
-
     rc = sqlite3_exec(db, sql, 0, 0, &error_msg);
-
     if (rc != SQLITE_OK) {
         fprintf(stderr, "Error al actualizar el producto: %s\n", error_msg);
         sqlite3_free(error_msg);
         sqlite3_close(db);
         return -1;
     }
-
     printf("Producto modificado correctamente\n");
     sqlite3_close(db);
 

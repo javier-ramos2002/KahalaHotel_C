@@ -16,5 +16,4 @@ void liberarMinibar(Minibar* minibar);
 void calcularPrecioTotalMinibar(Minibar* minibar);
 void imprimirMinibar(Minibar* minibar);
 
-
 #endif

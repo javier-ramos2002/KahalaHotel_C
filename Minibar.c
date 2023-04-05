@@ -12,17 +12,14 @@ Minibar* crearMinibar() {
         printf("Error: no se ha podido reservar memoria para el minibar.\n");
         return NULL;
     }
-
     minibar->productos = (Producto**) malloc(sizeof(Producto*) * TAM_INICIAL);
     if (minibar->productos == NULL) {
         printf("Error: no se ha podido reservar memoria para los productos del minibar.\n");
         free(minibar);
         return NULL;
     }
-
     minibar->numProductos = 0;
     minibar->precioTotal = 0.0;
-
     return minibar;
 }
 
@@ -31,7 +28,6 @@ void liberarMinibar(Minibar* minibar) {
     for (int i = 0; i < minibar->numProductos; i++) {
         liberarProducto(minibar->productos[i]);
     }
-
     free(minibar->productos);
     free(minibar);
 }

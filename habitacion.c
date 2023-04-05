@@ -76,7 +76,6 @@ void modificarHabitacion(int id, Habitacion *habitacion) {
         return;
     }
 
-    
     sqlite3_bind_text(stmt, 1, habitacion->nombre, -1, SQLITE_STATIC);
     sqlite3_bind_double(stmt, 2, habitacion->precio);
     sqlite3_bind_text(stmt, 3, habitacion->tipo, -1, SQLITE_STATIC);
@@ -93,6 +92,7 @@ void modificarHabitacion(int id, Habitacion *habitacion) {
     sqlite3_finalize(stmt);
     sqlite3_close(db);
 }
+
 //Optiene el Id de un a Habitacion (para realizar consultas en la BD)
 int obtenerID(Habitacion* habitacion){
     return habitacion->id;

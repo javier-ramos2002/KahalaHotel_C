@@ -11,7 +11,7 @@ void inicializarReserva(Reserva* reserva, int id, char* fechaEntrada, char* fech
 
     reserva->fechaSalida = (char*) malloc(sizeof(char) * (strlen(fechaSalida) + 1));
     strcpy(reserva->fechaSalida, fechaSalida);
-
+    
     reserva->cliente = cliente;
     reserva->habitacion = habitacion;
     reserva->minibar = minibar;
