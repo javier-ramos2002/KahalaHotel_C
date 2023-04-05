@@ -36,6 +36,34 @@ void liberarMinibar(Minibar* minibar) {
     free(minibar);
 }
 
+// // Añade un producto al minibar (y actualiza el precio total y num de productos)
+// void anyadirProductoMinibar(Minibar* minibar, Producto* producto) {
+//     if (minibar->numProductos % TAM_INICIAL == 0) {
+//         minibar->productos = (Producto**) realloc(minibar->productos, sizeof(Producto*) * (minibar->numProductos + TAM_INICIAL));
+//         if (minibar->productos == NULL) {
+//             printf("Error: no se pudo reservar memoria para los productos del minibar.\n");
+//             return;
+//         }
+//     }
+
+//     minibar->productos[minibar->numProductos++] = producto;
+//     minibar->precioTotal += producto->precio;
+// }
+
+// //elimina un producto del minibar (e actualiza el precio total)
+// void eiminarProductoMinibar(Minibar* minibar, int idProducto) {
+//     for (int i = 0; i < minibar->numProductos; i++) {
+//         if (minibar->productos[i]->id == idProducto) {
+//             liberarProducto(minibar->productos[i]);
+//             for (int j = i; j < minibar->numProductos - 1; j++) {
+//                 minibar->productos[j] = minibar->productos[j+1];
+//             }
+//             minibar->numProductos--;
+//             minibar->precioTotal -= minibar->productos[i]->precio;
+//             break;
+//         }
+//     }
+// }
 
 // Calcula el precio total del minibar
 void calcularPrecioTotalMinibar(Minibar* minibar) {

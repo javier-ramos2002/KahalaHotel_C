@@ -11,6 +11,8 @@ typedef struct {
 
 Minibar* crearMinibar();
 void liberarMinibar(Minibar* minibar);
+// void anyadirProductoMinibar(Minibar* minibar, Producto* producto);
+// void quitarProductoMinibar(Minibar* minibar, int idProducto);
 void calcularPrecioTotalMinibar(Minibar* minibar);
 void imprimirMinibar(Minibar* minibar);
 
