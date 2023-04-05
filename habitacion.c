@@ -57,6 +57,30 @@ void anyadirHabitacion(Habitacion habitacion) {
     printf("Habitacion añadida exitosamente\n");
 }
 
+//Elimina una habitacion en la base de datos
+void eliminarHabitacion(int id) {
+    sqlite3 *db;
+    char *error_message = 0;
+    int result;
+    char sql_query[200];
+    sprintf(sql_query, "DELETE FROM habitaciones WHERE id=%d", id);
+    result = sqlite3_open("bd.db", &db); 
+    if (result != SQLITE_OK) {
+        printf("Error al abrir la base de datos: %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        return;
+    }
+    result = sqlite3_exec(db, sql_query, 0, 0, &error_message);
+    if (result != SQLITE_OK) {
+        printf("Error al eliminar la habitacion: %s\n", error_message);
+        sqlite3_free(error_message);
+        sqlite3_close(db);
+        return;
+    }
+    sqlite3_close(db);
+    printf("Habitacion eliminada exitosamente\n");
+}
+
 // Actualiza/modifica la información de una habitación en la tabla
 void modificarHabitacion(int id, Habitacion *habitacion) {
     sqlite3 *db;
@@ -92,6 +116,8 @@ void modificarHabitacion(int id, Habitacion *habitacion) {
     sqlite3_finalize(stmt);
     sqlite3_close(db);
 }
+
+
 
 //Optiene el Id de un a Habitacion (para realizar consultas en la BD)
 int obtenerID(Habitacion* habitacion){
