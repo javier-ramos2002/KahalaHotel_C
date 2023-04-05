@@ -8,10 +8,13 @@ int loginAdministrador(char* usuario, char* contrasena) {
     char* admin_password = "admin";
     
     printf("Ingrese su nombre de usuario: ");
-    scanf("%s", usuario);
+    char input[50];
+    fgets(input, 50, stdin);
+    sscanf(input, "%s", usuario);
     
     printf("Ingrese su contrasena: ");
-    scanf("%s", contrasena);
+    fgets(input, 50, stdin);
+    sscanf(input, "%s", contrasena);
     
     if (strcmp(usuario, admin_username) == 0
         && strcmp(contrasena, admin_password) == 0) {
