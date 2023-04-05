@@ -3,6 +3,7 @@
         "stdio.h": "c",
         "utilities.h": "c",
         "producto.h": "c",
-        "sqlite3.h": "c"
+        "sqlite3.h": "c",
+        "habitacion.h": "c"
     }
 }
