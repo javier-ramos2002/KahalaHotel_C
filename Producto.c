@@ -104,6 +104,6 @@ int modificarProducto(int id, Producto producto) {
     return 0;
 }
 //Optiene el Id de un producto (para hacer las consultas en la BD)
-int obtenerID(Producto* producto){
+int obtenerIDproducto(Producto* producto){
     return producto->id;
 }

@@ -13,6 +13,6 @@ void imprimirProducto(Producto* producto);
 void anyadirProducto(Producto producto);
 void eliminarProducto(int id);
 int modificarProducto(int id, Producto producto);
-int obtenerID(Producto* producto);
+int obtenerIDproducto(Producto* producto);
 
 #endif // PRODUCTO_H
