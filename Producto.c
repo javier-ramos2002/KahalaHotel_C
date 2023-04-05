@@ -51,6 +51,32 @@ void anyadirProducto(Producto producto) {
     sqlite3_close(db);
 }
 
+//Elimina un producto en la base de datos
+void eliminarProducto(int id) {
+    sqlite3 *db;
+    char *err_msg = NULL;
+    char *sql = NULL;
+    int rc = sqlite3_open("bd.db", &db);
+    if (rc != SQLITE_OK) {
+        fprintf(stderr, "Error al abrir la base de datos: %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        exit(1);
+    }
+
+    asprintf(&sql, "DELETE FROM productos WHERE id=%d;", id);
+
+    rc = sqlite3_exec(db, sql, NULL, 0, &err_msg);
+    if (rc != SQLITE_OK) {
+        fprintf(stderr, "Error al eliminar el producto: %s\n", err_msg);
+        sqlite3_free(err_msg);
+        sqlite3_close(db);
+        exit(1);
+    }
+
+    sqlite3_free(sql);
+    sqlite3_close(db);
+}
+
 //Modifica/actualiza un producto en la base de datos
 int modificarProducto(int id, Producto producto) {
     sqlite3 *db;
