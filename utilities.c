@@ -7,6 +7,7 @@
 #include "bd.h"
 void menuPrincipal() {
     init_database();
+    char input[50];
     int opcion;
     do {
         printf("************\nKAHALA HOTEL\n************\n");
@@ -14,7 +15,8 @@ void menuPrincipal() {
         printf("2. Acceder como administrador\n");
         printf("3. Salir del programa\n");
         printf("Ingrese una opcion: ");
-        scanf("%d", &opcion);
+        fgets(input, 50, stdin);
+        sscanf(input, "%d", &opcion);
 
         switch (opcion) {
             int numClientes;
@@ -50,6 +52,7 @@ void menuPrincipal() {
 }
 
 void menuCliente() {
+    char input[50];
     int opcion;
     do {
         printf("***************************\nMenu de acceso como cliente\n***************************\n");
@@ -58,7 +61,8 @@ void menuCliente() {
         printf("3. Configurar mi perfil\n");
         printf("4. Volver al menu principal\n");
         printf("Ingrese una opcion: ");
-        scanf("%d", &opcion);
+        fgets(input, 50, stdin);
+        sscanf(input, "%d", &opcion);
 
         switch (opcion) {
             int numClientes;
@@ -87,6 +91,7 @@ void menuCliente() {
 
 
 int menuAdministradorLogin(){
+    char input[50];
     int opcion,a;
     char usuario[50];
     char contrasena[50];
@@ -96,7 +101,8 @@ int menuAdministradorLogin(){
         printf("1. Iniciar sesion\n");
         printf("2. Volver al menu principal\n");
         printf("Ingrese una opcion: ");
-        scanf("%d", &opcion);
+        fgets(input, 50, stdin);
+        sscanf(input, "%d", &opcion);
 
         switch (opcion) {
             case 1:
@@ -114,6 +120,7 @@ int menuAdministradorLogin(){
 }
 
 void menuReserva(){
+    char input[50];
     int opcion;
     do {
         printf("*******\nReserva\n*******\n");
@@ -121,7 +128,8 @@ void menuReserva(){
         printf("2. Ver mis reservas\n");
         printf("3. Volver al menu principal\n");
         printf("Ingrese una opcion: ");
-        scanf("%d", &opcion);
+        fgets(input, 50, stdin);
+        sscanf(input, "%d", &opcion);
 
         switch (opcion) {
             case 1:
@@ -141,13 +149,15 @@ void menuReserva(){
 }
 
 void menuAdministrador(){
+    char input[50];
     int opcion;
     do {
         printf("\n*************\nAdministrador\n*************\n");
         printf("1. Ver lista de clientes\n");
         printf("2. Volver al menu principal\n");
         printf("Ingrese una opcion: ");
-        scanf("%d", &opcion);
+        fgets(input, 50, stdin);
+        sscanf(input, "%d", &opcion);
 
         switch (opcion) {
             case 1:
