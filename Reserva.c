@@ -19,10 +19,10 @@ void inicializarReserva(Reserva* reserva, int id, char* fechaEntrada, char* fech
 
 //Libera la memoria asignada a una reserva
 void liberarReserva(Reserva* reserva) {
-    free(reserva->id);
+    free((void *) reserva->id);
     free(reserva->fechaEntrada);
     free(reserva->fechaSalida);
-    liberarCliente(reserva->cliente);
+    //liberarCliente(reserva->cliente); por hacer
     liberarHabitacion(reserva->habitacion);
     liberarMinibar(reserva->minibar);
     free(reserva);

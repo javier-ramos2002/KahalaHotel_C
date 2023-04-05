@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "producto.h"
 #include "sqlite3.h"
+#define _GNU_SOURCE
 
 
 
