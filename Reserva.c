@@ -23,7 +23,7 @@ void liberarReserva(Reserva* reserva) {
     free((void *) reserva->id);
     free(reserva->fechaEntrada);
     free(reserva->fechaSalida);
-    //liberarCliente(reserva->cliente); por hacer
+    liberarCliente(reserva->cliente); //por hacer
     liberarHabitacion(reserva->habitacion);
     liberarMinibar(reserva->minibar);
     free(reserva);

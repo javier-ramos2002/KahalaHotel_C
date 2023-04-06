@@ -109,3 +109,13 @@ int iniciarSesion(const char *filename) {
     printf("Credenciales invalidas, intentelo de nuevo.\n");
     return 1;
 }
+
+void liberarCliente(Cliente *cliente) {
+    free(cliente->dni);
+    free(cliente->nombre);
+    free(cliente->apellido);
+    free(cliente->contrasena);
+    cliente->edad = 0;
+    cliente->telefono = 0;
+    cliente->numeroTarjeta = 0;
+}
